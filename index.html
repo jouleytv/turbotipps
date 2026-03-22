@@ -3,20 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Boomerang VIP — Reactivation Strategy</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>Boomerang Bet — VIP Growth Strategy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
     --black: #0a0a0a;
-    --dark: #111215;
-    --card: #16181d;
-    --border: #252830;
-    --accent: #e8ff47;
-    --accent2: #ff4757;
-    --accent3: #00d4aa;
-    --muted: #5a5f72;
-    --text: #d8dae8;
-    --white: #f0f2ff;
+    --off-black: #111111;
+    --card-bg: #161616;
+    --border: #2a2a2a;
+    --red: #e8302a;
+    --red-dim: #9e1f1b;
+    --gold: #c9a84c;
+    --gold-dim: #7a6028;
+    --white: #f5f0eb;
+    --muted: #888;
+    --green: #2aad6b;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -25,893 +27,455 @@
 
   body {
     background: var(--black);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 16px;
+    color: var(--white);
+    font-family: 'Syne', sans-serif;
     line-height: 1.6;
     overflow-x: hidden;
   }
 
-  /* NAV */
+  /* ── NAV ── */
   nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    padding: 20px 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(10,10,10,0.9);
-    backdrop-filter: blur(12px);
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(10,10,10,0.92);
     border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(10px);
   }
-
   .nav-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    letter-spacing: 3px;
-    color: var(--accent);
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.05em;
+    color: var(--white);
+  }
+  .nav-logo span { color: var(--red); }
+  nav ul { display: flex; gap: 2rem; list-style: none; }
+  nav ul a {
+    color: var(--muted); text-decoration: none;
+    font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+    font-weight: 600; transition: color 0.2s;
+  }
+  nav ul a:hover { color: var(--white); }
+  .badge-conf {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem; letter-spacing: 0.1em;
+    color: var(--red); border: 1px solid var(--red-dim);
+    padding: 0.25rem 0.6rem; border-radius: 2px;
   }
 
-  .nav-links {
-    display: flex;
-    gap: 36px;
-    list-style: none;
-  }
-
-  .nav-links a {
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 13px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    font-weight: 500;
-    transition: color 0.2s;
-  }
-
-  .nav-links a:hover { color: var(--accent); }
-
-  .nav-cta {
-    background: var(--accent);
-    color: var(--black);
-    padding: 10px 24px;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    border: none;
-    cursor: pointer;
-    transition: opacity 0.2s;
-  }
-
-  .nav-cta:hover { opacity: 0.85; }
-
-  /* HERO */
-  #hero {
+  /* ── HERO ── */
+  .hero {
     min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 140px 60px 80px;
-    position: relative;
-    overflow: hidden;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 10rem 3rem 6rem;
+    position: relative; overflow: hidden;
   }
-
-  .hero-grid {
-    position: absolute;
-    inset: 0;
+  .hero-grid-bg {
+    position: absolute; inset: 0;
     background-image:
-      linear-gradient(rgba(232,255,71,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(232,255,71,0.04) 1px, transparent 1px);
+      linear-gradient(rgba(232,48,42,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232,48,42,0.04) 1px, transparent 1px);
     background-size: 60px 60px;
-    mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 100%);
   }
-
   .hero-glow {
-    position: absolute;
+    position: absolute; top: -200px; left: -200px;
     width: 700px; height: 700px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(232,255,71,0.06) 0%, transparent 70%);
-    top: -100px; right: -100px;
+    background: radial-gradient(circle, rgba(232,48,42,0.12) 0%, transparent 70%);
     pointer-events: none;
   }
-
-  .hero-label {
-    display: inline-block;
+  .hero-eyebrow {
     font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--accent);
-    border: 1px solid rgba(232,255,71,0.3);
-    padding: 6px 16px;
-    margin-bottom: 32px;
+    font-size: 0.72rem; letter-spacing: 0.2em;
+    color: var(--red); text-transform: uppercase;
+    margin-bottom: 1.5rem;
   }
-
-  .hero-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(60px, 9vw, 130px);
-    line-height: 0.92;
-    color: var(--white);
-    letter-spacing: 2px;
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 8vw, 7rem);
+    line-height: 1;
     max-width: 900px;
-    margin-bottom: 32px;
+    margin-bottom: 0.5rem;
   }
-
-  .hero-title span { color: var(--accent); }
-
+  .hero h1 em {
+    font-style: italic; color: var(--red);
+  }
   .hero-sub {
-    font-size: 18px;
-    color: var(--muted);
-    max-width: 540px;
-    margin-bottom: 48px;
-    font-weight: 300;
+    font-size: 1.1rem; color: var(--muted);
+    max-width: 560px; margin: 2rem 0 3rem;
     line-height: 1.7;
   }
-
-  .hero-stats {
-    display: flex;
-    gap: 48px;
-    margin-bottom: 48px;
+  .hero-cta {
+    display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--red); color: var(--white);
+    padding: 0.9rem 2rem; font-family: 'Syne', sans-serif;
+    font-size: 0.85rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; border: none; cursor: pointer;
+    text-decoration: none; display: inline-block;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .btn-primary:hover { background: #c4231d; transform: translateY(-1px); }
+  .btn-ghost {
+    color: var(--muted); font-size: 0.85rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; padding: 0.9rem 0;
+    border-bottom: 1px solid var(--border); transition: color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--white); }
+  .hero-meta {
+    position: absolute; bottom: 3rem; right: 3rem;
+    font-family: 'DM Mono', monospace; font-size: 0.65rem;
+    color: var(--border); letter-spacing: 0.08em; text-align: right;
+    line-height: 2;
   }
 
-  .hero-stat-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 42px;
-    color: var(--accent2);
-    letter-spacing: 1px;
-  }
-
-  .hero-stat-label {
-    font-size: 12px;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin-top: -4px;
-  }
-
-  .hero-badge {
-    display: inline-block;
-    background: rgba(255,71,87,0.12);
-    border: 1px solid rgba(255,71,87,0.4);
-    color: var(--accent2);
+  /* ── SECTION SHARED ── */
+  section { padding: 6rem 3rem; position: relative; }
+  .section-label {
     font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 8px 20px;
-    margin-top: 8px;
+    font-size: 0.68rem; letter-spacing: 0.2em;
+    color: var(--red); text-transform: uppercase;
+    margin-bottom: 1rem;
   }
-
-  /* SECTION BASE */
-  section {
-    padding: 100px 60px;
-    max-width: 1280px;
-    margin: 0 auto;
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.1; margin-bottom: 1.5rem;
   }
-
-  .section-tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 12px;
+  h2 em { font-style: italic; color: var(--gold); }
+  .section-intro {
+    color: var(--muted); font-size: 1rem; max-width: 600px;
+    line-height: 1.8; margin-bottom: 3rem;
   }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
 
-  .section-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(38px, 5vw, 64px);
-    color: var(--white);
-    line-height: 1;
-    letter-spacing: 1px;
-    margin-bottom: 16px;
+  /* ── PILLARS ── */
+  .pillars-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    background: var(--border); margin-top: 3rem;
   }
-
-  .section-sub {
-    color: var(--muted);
-    font-size: 16px;
-    max-width: 560px;
-    margin-bottom: 56px;
-    font-weight: 300;
+  .pillar {
+    background: var(--card-bg); padding: 3rem;
+    position: relative; overflow: hidden;
   }
-
-  .divider {
-    border: none;
-    border-top: 1px solid var(--border);
-    margin: 0;
-  }
-
-  /* PILLARS */
-  #pillars { background: var(--dark); }
-
-  .pillars-wrap { max-width: 1280px; margin: 0 auto; padding: 100px 60px; }
-
-  .pillar-cards {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2px;
-    margin-top: 56px;
-  }
-
-  .pillar-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    padding: 48px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .pillar-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-  }
-
-  .pillar-card.retention::before { background: var(--accent3); }
-  .pillar-card.reactivation::before { background: var(--accent2); }
-
   .pillar-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 80px;
-    color: var(--border);
-    position: absolute;
-    top: 24px; right: 32px;
-    line-height: 1;
+    font-family: 'DM Serif Display', serif;
+    font-size: 5rem; color: var(--border);
+    position: absolute; top: 1rem; right: 1.5rem;
+    line-height: 1; pointer-events: none;
   }
-
   .pillar-icon {
-    font-size: 32px;
-    margin-bottom: 20px;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--red); display: flex; align-items: center;
+    justify-content: center; margin-bottom: 1.5rem;
+    font-size: 1.2rem;
   }
-
-  .pillar-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 36px;
-    color: var(--white);
-    letter-spacing: 1px;
-    margin-bottom: 16px;
+  .pillar h3 {
+    font-family: 'DM Serif Display', serif; font-size: 1.6rem;
+    margin-bottom: 1rem;
   }
-
-  .pillar-card.retention .pillar-title { color: var(--accent3); }
-  .pillar-card.reactivation .pillar-title { color: var(--accent2); }
-
-  .pillar-points { list-style: none; }
-  .pillar-points li {
-    font-size: 14px;
-    color: var(--muted);
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
+  .pillar ul { list-style: none; }
+  .pillar ul li {
+    font-size: 0.9rem; color: var(--muted); padding: 0.4rem 0;
+    border-bottom: 1px solid var(--border); line-height: 1.6;
   }
-  .pillar-points li:last-child { border-bottom: none; }
-  .pillar-points li::before {
-    content: '→';
-    color: var(--accent);
-    flex-shrink: 0;
-    margin-top: 1px;
+  .pillar ul li:last-child { border-bottom: none; }
+  .pillar ul li::before { content: '→ '; color: var(--red); font-weight: 700; }
+
+  /* ── FORMULA ── */
+  .formula-section { background: var(--off-black); }
+  .formula-bar {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+    background: var(--border); margin: 3rem 0;
   }
-
-  /* FORMULA */
-  #formula { background: var(--black); }
-  .formula-wrap { max-width: 1280px; margin: 0 auto; padding: 100px 60px; }
-
-  .formula-visual {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: var(--border);
-    margin-top: 56px;
-    border: 1px solid var(--border);
+  .formula-cell {
+    background: var(--card-bg); padding: 2.5rem 2rem; text-align: center;
   }
-
-  .formula-step {
-    background: var(--card);
-    padding: 40px 32px;
-    text-align: center;
-    position: relative;
+  .formula-cell .label {
+    font-family: 'DM Mono', monospace; font-size: 0.65rem;
+    letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase;
+    margin-bottom: 0.8rem;
   }
-
-  .formula-step-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 16px;
+  .formula-cell .amount {
+    font-family: 'DM Serif Display', serif; font-size: 2.5rem;
+    color: var(--white); display: block; margin-bottom: 0.5rem;
   }
-
-  .formula-step-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 52px;
-    line-height: 1;
-    margin-bottom: 8px;
+  .formula-cell .amount.green { color: var(--green); }
+  .formula-cell .desc { font-size: 0.78rem; color: var(--muted); }
+  .formula-highlight {
+    background: var(--red); color: var(--white);
+    padding: 1.5rem 3rem; text-align: center;
+    font-family: 'DM Mono', monospace; font-size: 0.9rem;
+    letter-spacing: 0.08em;
   }
+  .formula-highlight strong { font-size: 1.1rem; }
 
-  .formula-step:nth-child(1) .formula-step-num { color: var(--text); }
-  .formula-step:nth-child(2) .formula-step-num { color: var(--accent); }
-  .formula-step:nth-child(3) .formula-step-num { color: var(--muted); }
-  .formula-step:nth-child(4) .formula-step-num { color: var(--accent3); }
-
-  .formula-step-desc {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.5;
-  }
-
-  .formula-callout {
-    margin-top: 32px;
-    background: rgba(0,212,170,0.06);
-    border: 1px solid rgba(0,212,170,0.2);
-    border-left: 3px solid var(--accent3);
-    padding: 20px 28px;
-    font-size: 14px;
-    color: var(--accent3);
-    font-family: 'DM Mono', monospace;
-    letter-spacing: 0.5px;
-  }
-
-  /* CASE STUDY */
-  #case { background: var(--dark); }
-  .case-wrap { max-width: 1280px; margin: 0 auto; padding: 100px 60px; }
-
-  .timeline {
-    margin-top: 56px;
-    position: relative;
-  }
-
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 140px;
-    top: 0; bottom: 0;
-    width: 1px;
-    background: var(--border);
-  }
-
+  /* ── CASE STUDY ── */
+  .timeline { margin: 3rem 0; }
   .timeline-item {
-    display: grid;
-    grid-template-columns: 140px 1fr;
-    gap: 40px;
-    margin-bottom: 32px;
-    position: relative;
+    display: grid; grid-template-columns: 140px 1fr;
+    gap: 2rem; padding: 1.5rem 0; border-bottom: 1px solid var(--border);
+    align-items: start;
   }
-
+  .timeline-item:last-child { border-bottom: none; }
   .timeline-date {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-    text-align: right;
-    padding-top: 4px;
+    font-family: 'DM Mono', monospace; font-size: 0.75rem;
+    color: var(--red); letter-spacing: 0.08em; padding-top: 2px;
   }
+  .timeline-content { font-size: 0.92rem; color: var(--muted); line-height: 1.7; }
+  .timeline-content strong { color: var(--white); }
 
-  .timeline-dot {
-    position: absolute;
-    left: 136px;
-    top: 6px;
-    width: 9px; height: 9px;
-    border-radius: 50%;
-    background: var(--accent2);
-    border: 2px solid var(--dark);
+  .stat-row {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+    background: var(--border); margin: 3rem 0;
   }
-
-  .timeline-content {
-    background: var(--card);
-    border: 1px solid var(--border);
-    padding: 20px 28px;
+  .stat-cell {
+    background: var(--card-bg); padding: 2rem; text-align: center;
   }
-
-  .timeline-content h4 {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--white);
-    margin-bottom: 6px;
+  .stat-num {
+    font-family: 'DM Serif Display', serif; font-size: 2.8rem;
+    display: block; margin-bottom: 0.4rem;
   }
+  .stat-num.red { color: var(--red); }
+  .stat-label { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.05em; }
 
-  .timeline-content p {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.6;
+  /* ── IMAGE PLACEHOLDER ── */
+  .img-placeholder {
+    background: var(--card-bg); border: 1px dashed var(--border);
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; gap: 0.8rem;
+    color: var(--muted); font-family: 'DM Mono', monospace;
+    font-size: 0.72rem; letter-spacing: 0.08em;
   }
+  .img-placeholder svg { opacity: 0.3; }
+  .img-placeholder .ph-label { text-transform: uppercase; letter-spacing: 0.15em; }
 
-  .timeline-item.bad .timeline-dot { background: var(--accent2); }
-  .timeline-item.bad .timeline-content { border-left: 3px solid var(--accent2); }
-
-  .case-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    background: var(--border);
-    margin-top: 48px;
+  .chat-placeholder { height: 320px; }
+  .email-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 3rem 0;
   }
+  .email-placeholder { height: 280px; }
 
-  .case-stat {
-    background: var(--card);
-    padding: 32px;
-    text-align: center;
-  }
-
-  .case-stat-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 48px;
-    letter-spacing: 1px;
-    margin-bottom: 6px;
-  }
-
-  .case-stat-label {
-    font-size: 12px;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-  }
-
-  /* COMPARISON */
-  #comparison { background: var(--black); }
-  .comparison-wrap { max-width: 1280px; margin: 0 auto; padding: 100px 60px; }
-
+  /* ── COMPARISON ── */
   .compare-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2px;
-    margin-top: 56px;
-    background: var(--border);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    background: var(--border); margin: 3rem 0;
   }
-
-  .compare-col {
-    background: var(--card);
-    padding: 40px 40px;
+  .compare-col { background: var(--card-bg); padding: 2.5rem; }
+  .compare-col.bad { border-top: 3px solid var(--red-dim); }
+  .compare-col.good { border-top: 3px solid var(--green); }
+  .compare-header {
+    font-family: 'DM Mono', monospace; font-size: 0.7rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border);
   }
-
-  .compare-col-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 28px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--border);
+  .compare-header.bad { color: var(--red); }
+  .compare-header.good { color: var(--green); }
+  .compare-col ul { list-style: none; }
+  .compare-col ul li {
+    font-size: 0.88rem; color: var(--muted); padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border); line-height: 1.6;
   }
-
-  .compare-icon { font-size: 20px; }
-
-  .compare-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    letter-spacing: 1px;
-  }
-
-  .compare-col.bad .compare-name { color: var(--accent2); }
-  .compare-col.good .compare-name { color: var(--accent3); }
-
-  .compare-items { list-style: none; }
-  .compare-items li {
-    display: flex;
-    gap: 12px;
-    padding: 10px 0;
-    font-size: 14px;
-    border-bottom: 1px solid var(--border);
-    line-height: 1.5;
-  }
-  .compare-items li:last-child { border-bottom: none; }
-
-  .compare-col.bad .compare-items li::before { content: '✗'; color: var(--accent2); flex-shrink: 0; }
-  .compare-col.good .compare-items li::before { content: '✓'; color: var(--accent3); flex-shrink: 0; }
-
+  .compare-col ul li:last-child { border-bottom: none; }
   .compare-result {
-    margin-top: 24px;
-    padding: 16px 20px;
-    font-family: 'DM Mono', monospace;
-    font-size: 13px;
-    font-weight: 500;
+    background: var(--off-black); padding: 1.5rem 2.5rem;
+    font-family: 'DM Mono', monospace; font-size: 0.82rem;
+    letter-spacing: 0.05em; color: var(--white);
+    border-top: 1px solid var(--border);
+  }
+  .compare-result span { color: var(--red); }
+
+  /* ── TRANSACTION TABLE ── */
+  .tx-table-wrap { margin: 3rem 0; overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; }
+  thead tr { background: var(--off-black); }
+  th {
+    font-family: 'DM Mono', monospace; font-size: 0.68rem;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted);
+    padding: 1rem 1.5rem; text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 1rem 1.5rem; font-size: 0.88rem;
+    border-bottom: 1px solid var(--border); color: var(--muted);
+  }
+  tr:last-child td { border-bottom: none; }
+  td.amount-col { font-family: 'DM Mono', monospace; color: var(--red); }
+  td.status-col { color: var(--green); }
+  .table-caption {
+    font-family: 'DM Mono', monospace; font-size: 0.7rem;
+    color: var(--muted); margin-top: 1rem; letter-spacing: 0.05em;
   }
 
-  .compare-col.bad .compare-result {
-    background: rgba(255,71,87,0.08);
-    border: 1px solid rgba(255,71,87,0.2);
-    color: var(--accent2);
-  }
-
-  .compare-col.good .compare-result {
-    background: rgba(0,212,170,0.08);
-    border: 1px solid rgba(0,212,170,0.2);
-    color: var(--accent3);
-  }
-
-  /* SEGMENTATION */
-  #segmentation { background: var(--dark); }
-  .seg-wrap { max-width: 1280px; margin: 0 auto; padding: 100px 60px; }
-
-  .tier-table {
-    margin-top: 56px;
-    border: 1px solid var(--border);
-    overflow: hidden;
-  }
-
+  /* ── SEGMENTATION ── */
+  .tier-table { margin: 3rem 0; }
   .tier-row {
-    display: grid;
-    grid-template-columns: 140px 180px 1fr 1fr;
-    border-bottom: 1px solid var(--border);
-    transition: background 0.2s;
+    display: grid; grid-template-columns: 120px 180px 1fr 1fr;
+    gap: 0; border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
   }
-
-  .tier-row:last-child { border-bottom: none; }
   .tier-row:hover { background: rgba(255,255,255,0.02); }
-
-  .tier-row.header {
-    background: var(--border);
-  }
-
+  .tier-row.header { background: var(--off-black); }
   .tier-cell {
-    padding: 18px 24px;
-    font-size: 13px;
+    padding: 1.1rem 1.5rem; font-size: 0.85rem; color: var(--muted);
     border-right: 1px solid var(--border);
-    display: flex;
-    align-items: center;
   }
-
   .tier-cell:last-child { border-right: none; }
-
-  .tier-row.header .tier-cell {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--muted);
-    font-weight: 400;
+  .tier-cell.header-cell {
+    font-family: 'DM Mono', monospace; font-size: 0.66rem;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted);
   }
-
   .tier-badge {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 18px;
-    letter-spacing: 1px;
-    padding: 4px 12px;
-    border: 1px solid;
+    font-family: 'DM Mono', monospace; font-size: 0.72rem;
+    font-weight: 500; letter-spacing: 0.08em; padding: 0.2rem 0.6rem;
+    display: inline-block; border-radius: 2px;
+  }
+  .tier-vip { background: rgba(232,48,42,0.15); color: var(--red); }
+  .tier-high { background: rgba(201,168,76,0.15); color: var(--gold); }
+  .tier-mid { background: rgba(255,255,255,0.06); color: var(--white); }
+  .tier-low { background: rgba(136,136,136,0.1); color: var(--muted); }
+  .tier-irr { background: transparent; color: var(--border); }
+  .tier-red { background: rgba(232,48,42,0.08); color: var(--red-dim); }
+
+  /* ── CIRCLE FUNNEL ── */
+  .funnel-weeks {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+    background: var(--border); margin: 3rem 0;
+  }
+  .funnel-week { background: var(--card-bg); padding: 2rem; }
+  .week-num {
+    font-family: 'DM Mono', monospace; font-size: 0.68rem;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted);
+    margin-bottom: 0.8rem;
+  }
+  .week-offer {
+    font-family: 'DM Serif Display', serif; font-size: 1.3rem;
+    margin-bottom: 0.5rem; line-height: 1.2;
+  }
+  .week-detail { font-size: 0.8rem; color: var(--muted); margin-bottom: 1rem; }
+  .week-logic {
+    font-family: 'DM Mono', monospace; font-size: 0.68rem;
+    color: var(--red); letter-spacing: 0.05em;
+  }
+  .funnel-arrow {
+    text-align: center; color: var(--border); font-size: 1.5rem;
+    display: flex; align-items: center; justify-content: center;
   }
 
-  .tier-vip { color: var(--accent); border-color: rgba(232,255,71,0.4); background: rgba(232,255,71,0.06); }
-  .tier-high { color: #7b9cff; border-color: rgba(123,156,255,0.4); background: rgba(123,156,255,0.06); }
-  .tier-mid { color: var(--accent3); border-color: rgba(0,212,170,0.4); background: rgba(0,212,170,0.06); }
-  .tier-low { color: var(--muted); border-color: var(--border); }
-  .tier-irr { color: #3a3d4a; border-color: #252830; }
-
-  .tier-value {
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    color: var(--text);
+  /* ── KPI DECISION ── */
+  .kpi-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+    background: var(--border); margin: 3rem 0;
   }
-
-  .tier-note {
-    font-size: 12px;
-    color: var(--muted);
+  .kpi-card { background: var(--card-bg); padding: 2.5rem; }
+  .kpi-card.profit { border-top: 3px solid var(--green); }
+  .kpi-card.breakeven { border-top: 3px solid var(--gold); }
+  .kpi-card.loss { border-top: 3px solid var(--red); }
+  .kpi-status {
+    font-family: 'DM Mono', monospace; font-size: 0.7rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 1rem;
   }
+  .kpi-status.profit { color: var(--green); }
+  .kpi-status.breakeven { color: var(--gold); }
+  .kpi-status.loss { color: var(--red); }
+  .kpi-action { font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
+  .kpi-action strong { color: var(--white); }
 
-  /* CIRCLES */
-  #circles { background: var(--black); }
-  .circles-wrap { max-width: 1280px; margin: 0 auto; padding: 100px 60px; }
-
-  .circle-funnel {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2px;
-    background: var(--border);
-    margin-top: 56px;
-  }
-
-  .circle-week {
-    background: var(--card);
-    padding: 36px 28px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .circle-week::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 2px;
-    background: var(--accent);
-    opacity: 0.3;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s;
-  }
-
-  .circle-week:hover::after { transform: scaleX(1); opacity: 1; }
-
-  .circle-week-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 16px;
-  }
-
-  .circle-offer {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    color: var(--accent);
-    letter-spacing: 1px;
-    margin-bottom: 4px;
-  }
-
-  .circle-sub-offer {
-    font-size: 13px;
-    color: var(--muted);
-    margin-bottom: 20px;
-  }
-
-  .circle-logic {
-    font-size: 12px;
-    color: #3a3d4a;
-    font-style: italic;
-    border-top: 1px solid var(--border);
-    padding-top: 16px;
-    margin-top: 16px;
-  }
-
-  .funnel-note {
-    margin-top: 32px;
-    background: rgba(232,255,71,0.05);
-    border: 1px solid rgba(232,255,71,0.15);
-    padding: 20px 28px;
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.7;
-  }
-
-  .funnel-note strong { color: var(--accent); }
-
-  /* ANTI-CHURN */
-  #triggers { background: var(--dark); }
-  .triggers-wrap { max-width: 1280px; margin: 0 auto; padding: 100px 60px; }
-
-  .trigger-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2px;
-    background: var(--border);
-    margin-top: 56px;
-  }
-
-  .trigger-card {
-    background: var(--card);
-    padding: 40px;
-  }
-
-  .trigger-phase {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 12px;
-  }
-
-  .trigger-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    color: var(--white);
-    letter-spacing: 1px;
-    margin-bottom: 8px;
-  }
-
-  .trigger-trigger {
-    font-size: 13px;
-    color: var(--muted);
-    margin-bottom: 28px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .trigger-tiers {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .trigger-tier-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 16px;
-    background: var(--dark);
-    border: 1px solid var(--border);
-  }
-
-  .trigger-tier-name {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text);
-  }
-
-  .trigger-tier-amount {
-    font-family: 'DM Mono', monospace;
-    font-size: 13px;
-    color: var(--accent);
-  }
-
-  /* ROADMAP */
-  #roadmap { background: var(--black); }
-  .roadmap-wrap { max-width: 1280px; margin: 0 auto; padding: 100px 60px; }
-
+  /* ── ROADMAP ── */
   .roadmap-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    background: var(--border);
-    margin-top: 56px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+    background: var(--border); margin: 3rem 0;
   }
-
-  .roadmap-item {
-    background: var(--card);
-    padding: 36px;
-    position: relative;
-  }
-
+  .roadmap-item { background: var(--card-bg); padding: 2rem 2rem 2.5rem; }
   .roadmap-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 64px;
-    color: var(--border);
-    position: absolute;
-    top: 12px; right: 20px;
-    line-height: 1;
+    font-family: 'DM Serif Display', serif; font-size: 3rem;
+    color: var(--border); margin-bottom: 0.5rem; line-height: 1;
   }
-
   .roadmap-timing {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 12px;
+    font-family: 'DM Mono', monospace; font-size: 0.68rem;
+    color: var(--red); letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 0.8rem;
   }
-
   .roadmap-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 24px;
-    color: var(--white);
-    letter-spacing: 1px;
-    margin-bottom: 12px;
+    font-family: 'DM Serif Display', serif; font-size: 1.2rem;
+    margin-bottom: 0.8rem;
   }
+  .roadmap-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
 
-  .roadmap-desc {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.6;
+  /* ── ANTI-CHURN ── */
+  .trigger-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    background: var(--border); margin: 3rem 0;
   }
-
-  /* CTA */
-  #cta {
-    background: var(--dark);
-    border-top: 1px solid var(--border);
+  .trigger-card { background: var(--card-bg); padding: 2.5rem; }
+  .trigger-phase {
+    font-family: 'DM Mono', monospace; font-size: 0.7rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1rem;
   }
-
-  .cta-wrap {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 120px 60px;
-    text-align: center;
+  .trigger-desc { font-size: 0.88rem; color: var(--muted); margin-bottom: 1.5rem; line-height: 1.7; }
+  .tier-offers { display: flex; flex-direction: column; gap: 0.4rem; }
+  .tier-offer-row {
+    display: flex; justify-content: space-between;
+    align-items: center; padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border); font-size: 0.82rem;
   }
+  .tier-offer-row:last-child { border-bottom: none; }
+  .tier-name { font-family: 'DM Mono', monospace; color: var(--muted); font-size: 0.72rem; }
+  .tier-val { color: var(--white); font-weight: 600; }
 
-  .cta-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 32px;
-  }
-
-  .cta-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(52px, 7vw, 96px);
-    color: var(--white);
-    line-height: 0.92;
-    letter-spacing: 2px;
-    margin-bottom: 32px;
-  }
-
-  .cta-sub {
-    font-size: 17px;
-    color: var(--muted);
-    max-width: 480px;
-    margin: 0 auto 56px;
-    font-weight: 300;
-    line-height: 1.7;
-  }
-
-  .cta-stats {
-    display: flex;
-    gap: 64px;
-    justify-content: center;
-    margin-bottom: 56px;
-  }
-
-  .cta-stat-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 52px;
-    color: var(--accent);
-    letter-spacing: 1px;
-  }
-
-  .cta-stat-label {
-    font-size: 12px;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-  }
-
-  .cta-btn {
-    display: inline-block;
-    background: var(--accent);
-    color: var(--black);
-    padding: 18px 48px;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: opacity 0.2s, transform 0.2s;
-  }
-
-  .cta-btn:hover { opacity: 0.85; transform: translateY(-2px); }
-
-  /* FOOTER */
+  /* ── FOOTER ── */
   footer {
+    background: var(--off-black); padding: 4rem 3rem;
     border-top: 1px solid var(--border);
-    padding: 28px 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: var(--black);
+    display: flex; justify-content: space-between; align-items: flex-end;
+    flex-wrap: wrap; gap: 2rem;
+  }
+  .footer-brand {
+    font-family: 'DM Serif Display', serif; font-size: 1.8rem;
+  }
+  .footer-brand span { color: var(--red); }
+  .footer-meta {
+    font-family: 'DM Mono', monospace; font-size: 0.68rem;
+    color: var(--muted); line-height: 2; text-align: right;
   }
 
-  .footer-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 18px;
-    letter-spacing: 3px;
-    color: var(--accent);
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up {
+    opacity: 0; animation: fadeUp 0.7s ease forwards;
+  }
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.25s; }
+  .delay-3 { animation-delay: 0.4s; }
+  .delay-4 { animation-delay: 0.55s; }
+
+  /* ── SECTION DIVIDERS ── */
+  .section-num {
+    font-family: 'DM Serif Display', serif; font-size: 8rem;
+    color: rgba(255,255,255,0.03); position: absolute;
+    top: 3rem; right: 3rem; line-height: 1; pointer-events: none;
+    font-style: italic;
   }
 
-  .footer-text {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 1.5px;
-    color: var(--muted);
-  }
-
-  /* SCROLL ANIMATIONS */
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* RESPONSIVE */
+  /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
-    nav { padding: 16px 24px; }
-    .nav-links { display: none; }
-    #hero { padding: 120px 24px 60px; }
-    section, .pillars-wrap, .formula-wrap, .case-wrap, .comparison-wrap,
-    .seg-wrap, .circles-wrap, .triggers-wrap, .roadmap-wrap, .cta-wrap { padding: 60px 24px; }
-    footer { padding: 24px; flex-direction: column; gap: 12px; text-align: center; }
-    .pillar-cards, .compare-grid, .trigger-grid, .roadmap-grid { grid-template-columns: 1fr; }
-    .formula-visual, .circle-funnel { grid-template-columns: 1fr 1fr; }
-    .hero-stats { gap: 32px; flex-wrap: wrap; }
-    .cta-stats { gap: 32px; flex-wrap: wrap; }
-    .tier-row { grid-template-columns: 100px 140px 1fr; }
-    .tier-row .tier-cell:last-child { display: none; }
-    .case-stats { grid-template-columns: 1fr 1fr; }
-    .timeline::before { left: 80px; }
-    .timeline-item { grid-template-columns: 80px 1fr; gap: 24px; }
-    .timeline-dot { left: 76px; }
+    nav { padding: 1rem 1.5rem; }
+    nav ul { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .pillars-grid, .compare-grid, .email-grid, .trigger-grid { grid-template-columns: 1fr; }
+    .formula-bar, .stat-row { grid-template-columns: 1fr 1fr; }
+    .funnel-weeks, .kpi-grid, .roadmap-grid { grid-template-columns: 1fr 1fr; }
+    .tier-row { grid-template-columns: 100px 1fr; }
+    .tier-cell:nth-child(3), .tier-cell:nth-child(4) { display: none; }
+    .hero { padding: 8rem 1.5rem 4rem; }
+    footer { padding: 3rem 1.5rem; }
+    .footer-meta { text-align: left; }
   }
 </style>
 </head>
@@ -919,397 +483,475 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">BOOMERANG VIP</div>
-  <ul class="nav-links">
-    <li><a href="#pillars">Framework</a></li>
-    <li><a href="#case">Case Study</a></li>
-    <li><a href="#segmentation">Tiers</a></li>
-    <li><a href="#circles">Circles</a></li>
+  <div class="nav-logo">Boomerang<span>Bet</span></div>
+  <ul>
+    <li><a href="#framework">Framework</a></li>
+    <li><a href="#case-study">Case Study</a></li>
+    <li><a href="#reactivation">Reactivation</a></li>
+    <li><a href="#retention">Retention</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
   </ul>
-  <button class="nav-cta" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Let's Fix This</button>
+  <div class="badge-conf">Confidential · March 2026</div>
 </nav>
 
 <!-- HERO -->
-<section id="hero" style="max-width:100%;padding-top:140px;">
-  <div class="hero-grid"></div>
+<section class="hero">
+  <div class="hero-grid-bg"></div>
   <div class="hero-glow"></div>
-  <div style="position:relative; z-index:1;">
-    <div class="hero-label">Confidential — External Consulting Pitch · March 2026</div>
-    <h1 class="hero-title">
-      BOOMERANG IS<br>
-      LEAVING THE <span>VIP's MONEY</span><br>
-      ON THE TABLE.
-    </h1>
-    <p class="hero-sub">A data-backed case for fixing VIP Management & Reactivation at Boomerang Bet — built by External Growth Consultants.</p>
-    <div class="hero-stats">
-      <div>
-        <div class="hero-stat-num">€120K+</div>
-        <div class="hero-stat-label">Projected Missed Deposits</div>
-      </div>
-      <div>
-        <div class="hero-stat-num">€3,120</div>
-        <div class="hero-stat-label">Lost to Stake in 4 Days</div>
-      </div>
-      <div>
-        <div class="hero-stat-num">80%+</div>
-        <div class="hero-stat-label">Revenue from VIPs in iGaming</div>
-      </div>
-    </div>
-    <div class="hero-badge">Process Failure · Proven Revenue Loss · Fix Available</div>
+  <div class="hero-eyebrow fade-up">External Growth Consultants · VIP Strategy Pitch</div>
+  <h1 class="fade-up delay-1">
+    Boomerang is leaving<br>
+    the <em>VIP's money</em><br>
+    on the table.
+  </h1>
+  <p class="hero-sub fade-up delay-2">
+    A data-backed case for fixing VIP Management &amp; Reactivation at Boomerang Bet. Every missed touchpoint is a confirmed competitor gain.
+  </p>
+  <div class="hero-cta fade-up delay-3">
+    <a href="#framework" class="btn-primary">See the Strategy</a>
+    <a href="#case-study" class="btn-ghost">View Case Study →</a>
+  </div>
+  <div class="hero-meta">
+    BOOMERANG BET<br>
+    EXTERNAL CONSULTING PITCH<br>
+    MARCH 2026
   </div>
 </section>
-
 <hr class="divider">
 
-<!-- PILLARS -->
-<div id="pillars" style="background:var(--dark);">
-<div class="pillars-wrap">
-  <div class="reveal">
-    <div class="section-tag">Strategic Framework</div>
-    <h2 class="section-title">THE TWO PILLARS OF PLAYER REVENUE</h2>
-    <p class="section-sub">The only KPI that matters: how much money did we make? Track margin, not vanity metrics.</p>
-  </div>
-  <div class="pillar-cards reveal">
-    <div class="pillar-card retention">
+<!-- FRAMEWORK -->
+<section id="framework">
+  <div class="section-num">01</div>
+  <div class="section-label">Strategic Framework</div>
+  <h2>The Two Pillars of<br><em>Player Revenue</em></h2>
+  <p class="section-intro">
+    Bonuses and VIP perks must be mathematically justified. The only KPI that matters: how much money did we make?
+  </p>
+  <div class="pillars-grid">
+    <div class="pillar">
       <div class="pillar-num">01</div>
-      <div class="pillar-icon">🔒</div>
-      <div class="pillar-title">RETENTION</div>
-      <ul class="pillar-points">
-        <li>Bonuses & VIP perks must be mathematically justified</li>
-        <li>High cost without ROI = negative EV</li>
-        <li>Bad retention = players leave + affiliates suffer</li>
-        <li>Wrong KPI = wasted budget</li>
+      <div class="pillar-icon">↻</div>
+      <h3>Retention</h3>
+      <ul>
         <li>Structured circles replace gut-feel campaigns</li>
+        <li>Track margin — not vanity metrics</li>
+        <li>Bad retention = players leave + affiliates lose confidence</li>
+        <li>A 500K€ campaign earning 1.2M€ = SUCCESS</li>
       </ul>
     </div>
-    <div class="pillar-card reactivation">
+    <div class="pillar">
       <div class="pillar-num">02</div>
-      <div class="pillar-icon">🔄</div>
-      <div class="pillar-title">REACTIVATION</div>
-      <ul class="pillar-points">
-        <li>A €500K campaign earning €1.2M = SUCCESS</li>
+      <div class="pillar-icon" style="background:var(--gold)">⬆</div>
+      <h3>Reactivation</h3>
+      <ul>
+        <li>High Cost = Negative EV — Wrong KPI = Wasted Budget</li>
+        <li>Most teams track cost — not whether it's profitable</li>
         <li>100% comeback rate at breakeven = FAILURE</li>
-        <li>Most teams track cost — not profitability</li>
-        <li>Industry obsesses over 'how many came back'</li>
         <li>Every euro without ROI is a guaranteed loss</li>
       </ul>
     </div>
   </div>
-</div>
-</div>
-
+</section>
 <hr class="divider">
 
 <!-- FORMULA -->
-<div id="formula" style="background:var(--black);">
-<div class="formula-wrap">
-  <div class="reveal">
-    <div class="section-tag">Safe Bonus Methodology</div>
-    <h2 class="section-title">MATHEMATICALLY IMPOSSIBLE TO LOSE</h2>
-    <p class="section-sub">If the numbers work once, they work at any scale. Every redemption is +EV.</p>
+<section class="formula-section" id="formula">
+  <div class="section-num">02</div>
+  <div class="section-label">Safe Bonus Methodology</div>
+  <h2>The Formula: Mathematically<br><em>Impossible to Lose</em></h2>
+  <p class="section-intro">
+    Safe Bonus Formula: 100€ × 0.3 (margin) × 0.7 (safety buffer) = <strong style="color:var(--white)">€21 MAX BONUS</strong>
+  </p>
+  <div class="formula-bar">
+    <div class="formula-cell">
+      <span class="label">Deposit</span>
+      <span class="amount">€100</span>
+      <span class="desc">Player deposits €100</span>
+    </div>
+    <div class="formula-cell">
+      <span class="label">Bonus</span>
+      <span class="amount">€50</span>
+      <span class="desc">50 bonus + 30× wagering</span>
+    </div>
+    <div class="formula-cell">
+      <span class="label">Real Cost</span>
+      <span class="amount">~€20</span>
+      <span class="desc">Real cost to operator</span>
+    </div>
+    <div class="formula-cell">
+      <span class="label">Profit</span>
+      <span class="amount green">+€9</span>
+      <span class="desc">Guaranteed per redemption</span>
+    </div>
   </div>
-  <div class="formula-visual reveal">
-    <div class="formula-step">
-      <div class="formula-step-label">Deposit</div>
-      <div class="formula-step-num">€100</div>
-      <div class="formula-step-desc">Player deposits €100 to unlock bonus</div>
-    </div>
-    <div class="formula-step">
-      <div class="formula-step-label">Bonus Offer</div>
-      <div class="formula-step-num">€50</div>
-      <div class="formula-step-desc">50 bonus + 30x wagering requirement</div>
-    </div>
-    <div class="formula-step">
-      <div class="formula-step-label">Real Cost</div>
-      <div class="formula-step-num">~€20</div>
-      <div class="formula-step-desc">Actual cost to operator after margin</div>
-    </div>
-    <div class="formula-step">
-      <div class="formula-step-label">Guaranteed Profit</div>
-      <div class="formula-step-num">+€9</div>
-      <div class="formula-step-desc">Per redemption — scale infinitely</div>
-    </div>
+  <div class="formula-highlight">
+    <strong>+€9 GUARANTEED PROFIT</strong> → If the numbers work once, they work at any scale. Scale infinitely.
   </div>
-  <div class="formula-callout reveal">
-    → Formula: €100 × 0.3 (margin) × 0.7 (safety buffer) = €21 max bonus cost. Offer €50 bonus = +€9 guaranteed profit. Scale infinitely.
-  </div>
-</div>
-</div>
-
+</section>
 <hr class="divider">
 
 <!-- CASE STUDY -->
-<div id="case" style="background:var(--dark);">
-<div class="case-wrap">
-  <div class="reveal">
-    <div class="section-tag">Case Study — Revenue Lost</div>
-    <h2 class="section-title">HOW WINROLLA FAILED KEEPING A VIP PLAYER</h2>
-    <p class="section-sub">€9,300 deposited. €7,000+ lost. Zero VIP contact. A textbook process failure in 15 days.</p>
-  </div>
-
-  <div class="case-stats reveal">
-    <div class="case-stat">
-      <div class="case-stat-num" style="color:var(--accent2);">€9,300</div>
-      <div class="case-stat-label">Total Deposits</div>
+<section id="case-study">
+  <div class="section-num">03</div>
+  <div class="section-label">Case Study — Revenue Lost</div>
+  <h2>How WinRolla Failed<br><em>a VIP Player</em></h2>
+  <div class="stat-row">
+    <div class="stat-cell">
+      <span class="stat-num red">€9,300</span>
+      <span class="stat-label">Total Deposits</span>
     </div>
-    <div class="case-stat">
-      <div class="case-stat-num" style="color:var(--muted);">€1,500</div>
-      <div class="case-stat-label">Withdrawals</div>
+    <div class="stat-cell">
+      <span class="stat-num red">€1,500</span>
+      <span class="stat-label">Withdrawals</span>
     </div>
-    <div class="case-stat">
-      <div class="case-stat-num" style="color:var(--accent2);">€7,000+</div>
-      <div class="case-stat-label">Net Loss (Player) — Zero VIP Contact</div>
+    <div class="stat-cell">
+      <span class="stat-num red">€7,000+</span>
+      <span class="stat-label">Net Loss (Player)</span>
     </div>
-  </div>
-
-  <div class="timeline reveal" style="margin-top:48px;">
-    <div class="timeline-item bad">
-      <div class="timeline-date">28 Dec 2025</div>
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">
-        <h4>Player Registers — €9,300 Deposited</h4>
-        <p>Single-day crash: €2,000 lost on 2 bets. Still no outreach. Zero VIP contact during entire loss period.</p>
-      </div>
-    </div>
-    <div class="timeline-item bad">
-      <div class="timeline-date">20 Jan 2026</div>
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">
-        <h4>Generic "Welcome" Email — 8 Days Late</h4>
-        <p>VIP Manager sends generic 'I'm excited to have you!' — while the player was already churning to Stake.com.</p>
-      </div>
-    </div>
-    <div class="timeline-item bad">
-      <div class="timeline-date">21 Jan 2026</div>
-      <div class="timeline-dot" style="background:var(--accent2);"></div>
-      <div class="timeline-content">
-        <h4>Player Deposits €2,000+ on Stake.com</h4>
-        <p>WinRolla loses the player entirely. 6 confirmed deposits in 4 days. €3,120 captured by competitor.</p>
-      </div>
-    </div>
-    <div class="timeline-item bad">
-      <div class="timeline-date">10 Mar 2026</div>
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">
-        <h4>Auto Re-engagement: €20 No-Deposit Bonus</h4>
-        <p>Two months late. Fully automated. Treats a high-value VIP who wagered €200K+ like a new signup.</p>
-      </div>
+    <div class="stat-cell">
+      <span class="stat-num" style="color:var(--muted)">15 Days</span>
+      <span class="stat-label">Active Period</span>
     </div>
   </div>
-</div>
-</div>
-
+  <div class="timeline">
+    <div class="timeline-item">
+      <span class="timeline-date">28 Dec 2025</span>
+      <span class="timeline-content"><strong>€2,000 lost on 2 bets in a single day.</strong> No outreach.</span>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">12 Jan 2026</span>
+      <span class="timeline-content"><strong>€9,300 deposited — €7,000+ lost over 15 days.</strong> Zero VIP contact.</span>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">20 Jan 2026</span>
+      <span class="timeline-content">VIP Manager sends generic <strong>'I'm excited to have you!'</strong> — 8 days late.</span>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">21 Jan 2026</span>
+      <span class="timeline-content"><strong>Player deposits €2,000+ on Stake.com.</strong> WinRolla loses the player.</span>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">10 Mar 2026</span>
+      <span class="timeline-content">Auto re-engagement: €20 no-deposit + 50% up to €150. <strong>Too late.</strong></span>
+    </div>
+  </div>
+</section>
 <hr class="divider">
 
-<!-- COMPARISON -->
-<div id="comparison" style="background:var(--black);">
-<div class="comparison-wrap">
-  <div class="reveal">
-    <div class="section-tag">Competitive Benchmark</div>
-    <h2 class="section-title">STAKE DOES IT RIGHT. WINROLLA DOESN'T.</h2>
-    <p class="section-sub">The same player. Two different operators. The gap is process — not budget.</p>
+<!-- EXHIBIT B: CHATLOG -->
+<section style="background:var(--off-black)" id="exhibit-b">
+  <div class="section-num">04</div>
+  <div class="section-label">Exhibit B — Recorded Proof</div>
+  <h2>Chatlog: The VIP Manager<br><em>Interaction</em></h2>
+  <p class="section-intro">
+    VIP Welcome email forwarded to WhatsApp — 8 days after deposit losses began. Zero proactive communication from WinRolla during the loss period.
+  </p>
+  <div class="img-placeholder chat-placeholder">
+    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <rect x="2" y="3" width="20" height="18" rx="3"/><path d="M8 10h8M8 14h5"/>
+    </svg>
+    <span class="ph-label">WhatsApp Chat Recording</span>
+    <span style="font-size:0.65rem;color:var(--border)">36 sec video · Replace with actual screenshot</span>
   </div>
-  <div class="compare-grid reveal">
-    <div class="compare-col bad">
-      <div class="compare-col-header">
-        <div class="compare-icon">❌</div>
-        <div class="compare-name">WINROLLA — FAILED</div>
+</section>
+<hr class="divider">
+
+<!-- EXHIBIT A: EMAILS -->
+<section id="exhibit-a">
+  <div class="section-num">05</div>
+  <div class="section-label">Exhibit A — Proof of Process Failure</div>
+  <h2>VIP Communication<br><em>Failures</em></h2>
+  <div class="email-grid">
+    <div>
+      <p style="font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--red);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.8rem">8 Days Late · VIP Welcome Email — Jan 20</p>
+      <div class="img-placeholder email-placeholder">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/>
+        </svg>
+        <span class="ph-label">Email Screenshot</span>
       </div>
-      <ul class="compare-items">
+      <p style="font-size:0.82rem;color:var(--muted);margin-top:1rem;line-height:1.7">Generic greeting. No name, no data — sent 8 days after €7,000+ in losses. <em>'I'm excited to have you!'</em> — while the player was already churning to Stake.</p>
+    </div>
+    <div>
+      <p style="font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.8rem">2 Months Late · Re-Engagement Email — Mar 2026</p>
+      <div class="img-placeholder email-placeholder">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/>
+        </svg>
+        <span class="ph-label">Email Screenshot</span>
+      </div>
+      <p style="font-size:0.82rem;color:var(--muted);margin-top:1rem;line-height:1.7">€20 no-deposit + 50% up to €150 for a player who wagered €200K+. Fully automated. No manager name. Treats a high-value VIP like a new signup.</p>
+    </div>
+  </div>
+</section>
+<hr class="divider">
+
+<!-- COMPETITIVE BENCHMARK -->
+<section style="background:var(--off-black)" id="benchmark">
+  <div class="section-num">06</div>
+  <div class="section-label">Competitive Benchmark</div>
+  <h2>Case Study: How Stake<br><em>Does It Right</em></h2>
+  <div class="compare-grid">
+    <div class="compare-col bad">
+      <div class="compare-header bad">WinRolla — Failed Response</div>
+      <ul>
         <li>2 months delay before re-engagement</li>
         <li>€20 no-deposit offer for a €7K+ VIP</li>
         <li>50% up to €150 — insulting for a high-value player</li>
         <li>Generic automated email — zero personalization</li>
         <li>VIP manager acknowledged and did nothing</li>
-        <li>No proactive contact during loss period</li>
       </ul>
-      <div class="compare-result">Result: €0 revenue during Jan 21–23</div>
     </div>
     <div class="compare-col good">
-      <div class="compare-col-header">
-        <div class="compare-icon">✅</div>
-        <div class="compare-name">STAKE — WHAT GOOD LOOKS LIKE</div>
-      </div>
-      <ul class="compare-items">
+      <div class="compare-header good">Stake — What Good Looks Like</div>
+      <ul>
         <li>Personalised VIP bonus email sent within days</li>
         <li>€1,000+ bonus, no wager requirements</li>
-        <li>Not a generic €20 freeplay — real value for real players</li>
-        <li>Named manager with direct contact details</li>
-        <li>Proactive outreach tied to player behaviour</li>
-        <li>Segment-appropriate, psychologically timed</li>
+        <li>Not a generic €20 freeplay — real value</li>
+        <li>Player felt valued and engaged immediately</li>
       </ul>
-      <div class="compare-result">Result: €3,120 captured in 4 days</div>
     </div>
   </div>
-</div>
-</div>
+  <div class="compare-result">
+    Result: <span>€3,120 captured by Stake in 4 days</span>  ·  €0 for WinRolla
+  </div>
+</section>
+<hr class="divider">
 
+<!-- TRANSACTION PROOF -->
+<section id="transactions">
+  <div class="section-num">07</div>
+  <div class="section-label">Revenue Loss Evidence</div>
+  <h2>Proof: Player Deposits<br><em>Went to Stake Instead</em></h2>
+  <div class="stat-row">
+    <div class="stat-cell">
+      <span class="stat-num red">€3,120</span>
+      <span class="stat-label">Lost to Stake in 5 days</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num" style="color:var(--white)">6</span>
+      <span class="stat-label">Confirmed deposits Jan 21–25</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num" style="color:var(--border)">€0</span>
+      <span class="stat-label">WinRolla revenue this period</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num" style="color:var(--muted)">100%</span>
+      <span class="stat-label">Winnable revenue lost</span>
+    </div>
+  </div>
+  <div class="tx-table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Platform</th>
+          <th>Amount</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Jan 21</td><td>Stake.com</td><td class="amount-col">€520</td><td class="status-col">Confirmed</td></tr>
+        <tr><td>Jan 22</td><td>Stake.com</td><td class="amount-col">€680</td><td class="status-col">Confirmed</td></tr>
+        <tr><td>Jan 22</td><td>Stake.com</td><td class="amount-col">€440</td><td class="status-col">Confirmed</td></tr>
+        <tr><td>Jan 23</td><td>Stake.com</td><td class="amount-col">€550</td><td class="status-col">Confirmed</td></tr>
+        <tr><td>Jan 24</td><td>Stake.com</td><td class="amount-col">€480</td><td class="status-col">Confirmed</td></tr>
+        <tr><td>Jan 25</td><td>Stake.com</td><td class="amount-col">€450</td><td class="status-col">Confirmed</td></tr>
+      </tbody>
+    </table>
+    <p class="table-caption">STAKE.COM — TRANSACTION HISTORY · Jan 21–25, 2026 · This revenue was winnable.</p>
+  </div>
+</section>
+<hr class="divider">
+
+<!-- REACTIVATION -->
+<section style="background:var(--off-black)" id="reactivation">
+  <div class="section-num">08</div>
+  <div class="section-label">Revenue-First Framework</div>
+  <h2>Reactivation Strategy:<br><em>Circle Campaigns</em></h2>
+  <p class="section-intro">
+    Not how many came back — how much revenue did we make. The floor is always +EV. No exceptions.
+  </p>
+  <div class="funnel-weeks">
+    <div class="funnel-week">
+      <div class="week-num">Week 1</div>
+      <div class="week-offer">5€ Free Bet</div>
+      <div class="week-detail">Low friction entry point</div>
+      <div class="week-logic">↓ Non-converters → Week 2</div>
+    </div>
+    <div class="funnel-week">
+      <div class="week-num">Week 2</div>
+      <div class="week-offer">10 Free Spins</div>
+      <div class="week-detail">Momentum builder</div>
+      <div class="week-logic">↓ Non-converters → Week 3</div>
+    </div>
+    <div class="funnel-week">
+      <div class="week-num">Week 3</div>
+      <div class="week-offer">Reload Offer</div>
+      <div class="week-detail">Value escalation (tailored)</div>
+      <div class="week-logic">↓ Non-converters → Week 4</div>
+    </div>
+    <div class="funnel-week" style="border-top: 2px solid var(--red)">
+      <div class="week-num">Week 4</div>
+      <div class="week-offer">50% up to €150</div>
+      <div class="week-detail">TODAY ONLY — Limited offer</div>
+      <div class="week-logic" style="color:var(--red)">FOMO · Last chance</div>
+    </div>
+  </div>
+  <p style="font-size:0.85rem;color:var(--muted);border-left:2px solid var(--red);padding-left:1.5rem;line-height:1.8">
+    Tie to big events: Champions League Tuesday = Week 2 trigger. Bundesliga weekend = Week 3 push.
+  </p>
+</section>
 <hr class="divider">
 
 <!-- SEGMENTATION -->
-<div id="segmentation" style="background:var(--dark);">
-<div class="seg-wrap">
-  <div class="reveal">
-    <div class="section-tag">5-Tier Classification Framework</div>
-    <h2 class="section-title">PLAYER SEGMENTATION — THE FOUNDATION</h2>
-    <p class="section-sub">Every offer, every contact, every campaign must be tier-appropriate. No exceptions.</p>
-  </div>
-  <div class="tier-table reveal">
+<section id="segmentation">
+  <div class="section-num">09</div>
+  <div class="section-label">5-Tier Classification Framework</div>
+  <h2>Player Segmentation —<br><em>The Foundation</em></h2>
+  <div class="tier-table">
     <div class="tier-row header">
-      <div class="tier-cell">Tier</div>
-      <div class="tier-cell">Annual Value</div>
-      <div class="tier-cell">Contact Channels</div>
-      <div class="tier-cell">Special Notes</div>
+      <div class="tier-cell header-cell">Tier</div>
+      <div class="tier-cell header-cell">Annual Value</div>
+      <div class="tier-cell header-cell">Contact Channels</div>
+      <div class="tier-cell header-cell">Special Notes</div>
     </div>
     <div class="tier-row">
       <div class="tier-cell"><span class="tier-badge tier-vip">VIP</span></div>
-      <div class="tier-cell"><span class="tier-value">€100K+/year</span></div>
-      <div class="tier-cell" style="font-size:13px;color:var(--text);">Personal Telegram · VIP Manager · Same-day response</div>
-      <div class="tier-cell"><span class="tier-note">⚡ First month 10K+ = VIP treatment immediately</span></div>
+      <div class="tier-cell" style="color:var(--white)">100K€+/year</div>
+      <div class="tier-cell">Personal Telegram · VIP Manager · Same-day</div>
+      <div class="tier-cell">First month 10K+ = VIP immediately</div>
     </div>
     <div class="tier-row">
       <div class="tier-cell"><span class="tier-badge tier-high">HIGH</span></div>
-      <div class="tier-cell"><span class="tier-value">€20K–100K</span></div>
-      <div class="tier-cell" style="font-size:13px;color:var(--text);">Telegram contact · Personal outreach · Weekend coverage</div>
-      <div class="tier-cell"><span class="tier-note">Escalate for large wins / losses</span></div>
+      <div class="tier-cell" style="color:var(--white)">20K–100K€/yr</div>
+      <div class="tier-cell">Telegram contact · Personal outreach · Weekend</div>
+      <div class="tier-cell">Escalate for large wins</div>
     </div>
     <div class="tier-row">
       <div class="tier-cell"><span class="tier-badge tier-mid">MID</span></div>
-      <div class="tier-cell"><span class="tier-value">€5K–20K</span></div>
-      <div class="tier-cell" style="font-size:13px;color:var(--text);">Email sequences · Semi-personal · Escalate for wins</div>
-      <div class="tier-cell"><span class="tier-note">Bonus structure + escalation path</span></div>
+      <div class="tier-cell">5K–20K€/yr</div>
+      <div class="tier-cell">Email sequences · Semi-personal</div>
+      <div class="tier-cell">Escalate for wins</div>
     </div>
     <div class="tier-row">
       <div class="tier-cell"><span class="tier-badge tier-low">LOW</span></div>
-      <div class="tier-cell"><span class="tier-value">€500–5K</span></div>
-      <div class="tier-cell" style="font-size:13px;color:var(--text);">Automated email flows · Segment-specific offers</div>
-      <div class="tier-cell"><span class="tier-note">No manual effort required</span></div>
+      <div class="tier-cell">500–5K€/yr</div>
+      <div class="tier-cell">Automated email flows · Segment offers</div>
+      <div class="tier-cell">Standard flows only</div>
     </div>
     <div class="tier-row">
-      <div class="tier-cell"><span class="tier-badge tier-irr">IRRELEVANT</span></div>
-      <div class="tier-cell"><span class="tier-value" style="color:var(--muted);">€0–500</span></div>
-      <div class="tier-cell" style="font-size:13px;color:#3a3d4a;">No active investment. Standard flows only.</div>
-      <div class="tier-cell"><span class="tier-note" style="color:var(--accent2);">⚠ DO NOT target. Exclude from bonus campaigns.</span></div>
+      <div class="tier-cell"><span class="tier-badge tier-irr">IRREL.</span></div>
+      <div class="tier-cell">0–500€/yr</div>
+      <div class="tier-cell">No active investment</div>
+      <div class="tier-cell">Exclude from bonus campaigns</div>
+    </div>
+    <div class="tier-row" style="background:rgba(232,48,42,0.04)">
+      <div class="tier-cell"><span class="tier-badge tier-red">RED FLAG</span></div>
+      <div class="tier-cell" style="color:var(--red-dim)" colspan="3">Winning + Bonus Abusers — DO NOT target. Exclude from all bonus campaigns.</div>
     </div>
   </div>
-</div>
-</div>
-
+  <p style="font-size:0.85rem;color:var(--muted);border-left:2px solid var(--gold);padding-left:1.5rem;margin-top:2rem;line-height:1.8">
+    Projection Rule: Player deposits 10K in month 1 → treat as VIP from day 1. Don't wait for annual confirmation.
+  </p>
+</section>
 <hr class="divider">
 
-<!-- CIRCLES -->
-<div id="circles" style="background:var(--black);">
-<div class="circles-wrap">
-  <div class="reveal">
-    <div class="section-tag">Funnel Mechanics</div>
-    <h2 class="section-title">4-WEEK CIRCLE REACTIVATION SEQUENCE</h2>
-    <p class="section-sub">Only non-converters advance to the next offer. Tie every circle to big matchdays.</p>
-  </div>
-  <div class="circle-funnel reveal">
-    <div class="circle-week">
-      <div class="circle-week-label">Week 1</div>
-      <div class="circle-offer">5€ Free Bet</div>
-      <div class="circle-sub-offer">Low friction entry point</div>
-      <div class="circle-logic">If accepted → Circle complete. If not → Week 2 triggers.</div>
+<!-- KPI FRAMEWORK -->
+<section style="background:var(--off-black)" id="kpi">
+  <div class="section-num">10</div>
+  <div class="section-label">Decision Framework</div>
+  <h2>KPI Check & Circle 2 —<br><em>Always Stay +EV</em></h2>
+  <p class="section-intro">
+    The only KPI that matters: Revenue generated — not comeback rate.
+  </p>
+  <div class="kpi-grid">
+    <div class="kpi-card profit">
+      <div class="kpi-status profit">Profitable (+EV)</div>
+      <div class="kpi-action"><strong>Scale Circle.</strong> Launch Circle 2 with same or better offer. If it works once, it works at scale.</div>
     </div>
-    <div class="circle-week">
-      <div class="circle-week-label">Week 2</div>
-      <div class="circle-offer">Reload Offer</div>
-      <div class="circle-sub-offer">10 Free Spins (Tailored)</div>
-      <div class="circle-logic">Momentum builder. ⚽ UCL Tuesday = Week 2 trigger.</div>
+    <div class="kpi-card breakeven">
+      <div class="kpi-status breakeven">Breakeven (0)</div>
+      <div class="kpi-action"><strong>Optimize channels &amp; messaging.</strong> Try Circle 2 with improved offers. Find the margin leak.</div>
     </div>
-    <div class="circle-week">
-      <div class="circle-week-label">Week 3</div>
-      <div class="circle-offer">50% Deposit</div>
-      <div class="circle-sub-offer">Up to €150 — value escalation</div>
-      <div class="circle-logic">Bundesliga weekend = Week 3 push timing.</div>
-    </div>
-    <div class="circle-week">
-      <div class="circle-week-label">Week 4</div>
-      <div class="circle-offer">TODAY ONLY</div>
-      <div class="circle-sub-offer">Limited Offer — FOMO · Last chance</div>
-      <div class="circle-logic">Urgency-driven. Final window before pause.</div>
+    <div class="kpi-card loss">
+      <div class="kpi-status loss">Loss (−EV)</div>
+      <div class="kpi-action"><strong>STOP.</strong> Fix channel, messaging, or offer. Never spend money to lose money. The floor is always +EV.</div>
     </div>
   </div>
-  <div class="funnel-note reveal">
-    <strong>KPI Rule:</strong> If Circle 1 is profitable → Scale. If breakeven → Improve offers and try Circle 2. If loss → STOP. Fix channel and messaging. Never spend money to lose money. The floor is always +EV. No exceptions.
+  <div class="formula-highlight" style="margin-top:0">
+    Example: Campaign cost €500K → Revenue €1.2M → <strong>Scale it.</strong> Floor is always +EV. No exceptions.
   </div>
-</div>
-</div>
-
+</section>
 <hr class="divider">
 
-<!-- ANTI-CHURN TRIGGERS -->
-<div id="triggers" style="background:var(--dark);">
-<div class="triggers-wrap">
-  <div class="reveal">
-    <div class="section-tag">2-Phase Trigger System</div>
-    <h2 class="section-title">ANTI-CHURN — EARLY INTERVENTION</h2>
-    <p class="section-sub">It's cheaper to win someone back than acquire a new customer. Even €200 in winback beats a €300 CPA.</p>
+<!-- RETENTION -->
+<section id="retention">
+  <div class="section-num">11</div>
+  <div class="section-label">VIP Structure, Manager UX &amp; Anti-Churn</div>
+  <h2>Retention — Contact<br><em>Structure &amp; Triggers</em></h2>
+  <p class="section-intro">
+    Every VIP and High player needs a direct Telegram contact. VIP Managers must work weekends — weekends are the highest-revenue days.
+  </p>
+
+  <h3 style="font-family:'DM Serif Display',serif;font-size:1.3rem;margin:3rem 0 1.5rem;color:var(--muted)">Trigger Timing Framework</h3>
+  <div style="display:flex;flex-direction:column;gap:1px;background:var(--border)">
+    <div style="background:var(--card-bg);padding:2rem;display:grid;grid-template-columns:2rem 200px 1fr;gap:1.5rem;align-items:start">
+      <span style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--border)">1</span>
+      <strong style="font-size:0.9rem">Player on a WINNING streak</strong>
+      <span style="font-size:0.88rem;color:var(--muted)">ACTION: <strong style="color:var(--white)">DO NOTHING.</strong> Never contact. Never offer a bonus. They're not thinking about leaving.</span>
+    </div>
+    <div style="background:var(--card-bg);padding:2rem;display:grid;grid-template-columns:2rem 200px 1fr;gap:1.5rem;align-items:start">
+      <span style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--border)">2</span>
+      <strong style="font-size:0.9rem">TILT during a session</strong>
+      <span style="font-size:0.88rem;color:var(--muted)">ACTION: <strong style="color:var(--white)">WAIT 20 minutes.</strong> Don't message instantly. Let the emotion settle first.</span>
+    </div>
+    <div style="background:var(--card-bg);padding:2rem;display:grid;grid-template-columns:2rem 200px 1fr;gap:1.5rem;align-items:start">
+      <span style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--border)">3</span>
+      <strong style="font-size:0.9rem">Bankroll hits ZERO</strong>
+      <span style="font-size:0.88rem;color:var(--muted)">ACTION: Wait 20 min → Message with <strong style="color:var(--white)">LIVE offer only.</strong> Match deposit 1:1. One time, 24h. LIVE games.</span>
+    </div>
+    <div style="background:var(--card-bg);padding:2rem;display:grid;grid-template-columns:2rem 200px 1fr;gap:1.5rem;align-items:start">
+      <span style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--border)">4</span>
+      <strong style="font-size:0.9rem">Next day — 24hrs after session</strong>
+      <span style="font-size:0.88rem;color:var(--muted)">ACTION: <strong style="color:var(--white)">'Sorry, bonus expired — but here's your cashback. Good luck today.'</strong> No cost, huge goodwill.</span>
+    </div>
   </div>
-  <div class="trigger-grid reveal">
+
+  <h3 style="font-family:'DM Serif Display',serif;font-size:1.3rem;margin:3rem 0 1rem;color:var(--muted)">Anti-Churn — 2-Phase Trigger System</h3>
+  <p style="font-size:0.88rem;color:var(--muted);margin-bottom:2rem;line-height:1.7">It's cheaper to win someone back than acquire a new customer. Even €200 in winback beats a €300 CPA.</p>
+  <div class="trigger-grid">
     <div class="trigger-card">
-      <div class="trigger-phase">Phase 1</div>
-      <div class="trigger-title">EARLY CHURN — Day 3–7</div>
-      <div class="trigger-trigger">TRIGGER: No login AND no deposit for 3–7 days<br>CHANNEL: Email (automated)</div>
-      <div class="trigger-tiers">
-        <div class="trigger-tier-row">
-          <span class="trigger-tier-name">LOW</span>
-          <span class="trigger-tier-amount">10€ Free Bet</span>
-        </div>
-        <div class="trigger-tier-row">
-          <span class="trigger-tier-name">MID</span>
-          <span class="trigger-tier-amount">50€ Free Bet</span>
-        </div>
-        <div class="trigger-tier-row">
-          <span class="trigger-tier-name">HIGH</span>
-          <span class="trigger-tier-amount">€100 + Telegram message</span>
-        </div>
-        <div class="trigger-tier-row">
-          <span class="trigger-tier-name">VIP</span>
-          <span class="trigger-tier-amount">€500 personal Telegram</span>
-        </div>
+      <div class="trigger-phase">Early Churn — Day 3–7</div>
+      <div class="trigger-desc">Trigger: No login AND no deposit for 3–7 days. Channel: Email (automated).</div>
+      <div class="tier-offers">
+        <div class="tier-offer-row"><span class="tier-name">LOW</span><span class="tier-val">10€ Free Bet</span></div>
+        <div class="tier-offer-row"><span class="tier-name">MID</span><span class="tier-val">50€ Free Bet</span></div>
+        <div class="tier-offer-row"><span class="tier-name">HIGH</span><span class="tier-val">100€ + Telegram msg</span></div>
+        <div class="tier-offer-row"><span class="tier-name">VIP</span><span class="tier-val">500€ Telegram personal</span></div>
       </div>
     </div>
     <div class="trigger-card">
-      <div class="trigger-phase">Phase 2</div>
-      <div class="trigger-title">CHURN WARNING — Day 7–14</div>
-      <div class="trigger-trigger">TRIGGER: Still no login AND no deposit after 7–14 days<br>CHANNEL: Telegram + Email escalation</div>
-      <div class="trigger-tiers">
-        <div class="trigger-tier-row">
-          <span class="trigger-tier-name">LOW</span>
-          <span class="trigger-tier-amount">10€ Free Bet</span>
-        </div>
-        <div class="trigger-tier-row">
-          <span class="trigger-tier-name">MID</span>
-          <span class="trigger-tier-amount">50€ Free Bet</span>
-        </div>
-        <div class="trigger-tier-row">
-          <span class="trigger-tier-name">HIGH</span>
-          <span class="trigger-tier-amount">€100 Telegram message</span>
-        </div>
-        <div class="trigger-tier-row">
-          <span class="trigger-tier-name">VIP</span>
-          <span class="trigger-tier-amount">€500+ VIP Manager call</span>
-        </div>
+      <div class="trigger-phase">Churn Warning — Day 7–14</div>
+      <div class="trigger-desc">Trigger: Still no login AND no deposit after 7–14 days. Channel: Telegram + Email escalation.</div>
+      <div class="tier-offers">
+        <div class="tier-offer-row"><span class="tier-name">LOW</span><span class="tier-val">10€ Free Bet</span></div>
+        <div class="tier-offer-row"><span class="tier-name">MID</span><span class="tier-val">50€ Free Bet</span></div>
+        <div class="tier-offer-row"><span class="tier-name">HIGH</span><span class="tier-val">100€ Telegram msg</span></div>
+        <div class="tier-offer-row"><span class="tier-name">VIP</span><span class="tier-val" style="color:var(--red)">500€+ VIP Manager call</span></div>
       </div>
     </div>
   </div>
-</div>
-</div>
-
+</section>
 <hr class="divider">
 
 <!-- ROADMAP -->
-<div id="roadmap" style="background:var(--black);">
-<div class="roadmap-wrap">
-  <div class="reveal">
-    <div class="section-tag">6-Pillar Execution Roadmap</div>
-    <h2 class="section-title">ACTION PLAN — IMMEDIATE PRIORITIES</h2>
-    <p class="section-sub">The infrastructure exists. The players are already there. We just need to fix the process.</p>
-  </div>
-  <div class="roadmap-grid reveal">
+<section style="background:var(--off-black)" id="roadmap">
+  <div class="section-num">12</div>
+  <div class="section-label">6-Pillar Execution Roadmap</div>
+  <h2>Action Plan —<br><em>Immediate Priorities</em></h2>
+  <div class="roadmap-grid">
     <div class="roadmap-item">
       <div class="roadmap-num">01</div>
       <div class="roadmap-timing">Week 1–2</div>
@@ -1340,75 +982,40 @@
       <div class="roadmap-title">VIP Manager UX</div>
       <div class="roadmap-desc">Female persona profiles (psychology-backed). Live session monitoring — 20min delay.</div>
     </div>
-    <div class="roadmap-item">
+    <div class="roadmap-item" style="border-top: 2px solid var(--red)">
       <div class="roadmap-num">06</div>
-      <div class="roadmap-timing">June (World Cup)</div>
+      <div class="roadmap-timing" style="color:var(--red)">June (World Cup)</div>
       <div class="roadmap-title">Mid/Low Automation</div>
-      <div class="roadmap-desc">Extend structure to Mid + Low tiers. Full automation ready for the World Cup surge.</div>
+      <div class="roadmap-desc">Extend to Mid + Low segments. Full automation ready for World Cup surge.</div>
     </div>
   </div>
-</div>
-</div>
-
+</section>
 <hr class="divider">
 
-<!-- CTA -->
-<div id="cta">
-<div class="cta-wrap">
-  <div class="reveal">
-    <div class="cta-label">What Happens Next</div>
-    <h2 class="cta-title">LET'S TURN MISSED<br>REVENUE INTO<br><span style="color:var(--accent);">COMPETITIVE ADVANTAGE.</span></h2>
-    <p class="cta-sub">The process is broken. The players are there. The fix is ready. Every week without action is another €3K+ left on the table.</p>
-  </div>
-  <div class="cta-stats reveal">
-    <div>
-      <div class="cta-stat-num">€120K+</div>
-      <div class="cta-stat-label">Projected VIP Deposits</div>
-    </div>
-    <div>
-      <div class="cta-stat-num">€0</div>
-      <div class="cta-stat-label">Revenue if Nothing Changes</div>
-    </div>
-    <div>
-      <div class="cta-stat-num">+EV</div>
-      <div class="cta-stat-label">Every Campaign, Always</div>
-    </div>
-  </div>
-  <div class="reveal">
-    <a href="mailto:contact@example.com" class="cta-btn">Start the Conversation →</a>
-  </div>
-</div>
-</div>
+<!-- CLOSING -->
+<section id="closing" style="text-align:center;padding:8rem 3rem">
+  <div class="section-label" style="justify-content:center;display:flex">What Happens Next</div>
+  <h2 style="max-width:700px;margin:1.5rem auto;font-size:clamp(2rem,5vw,4rem)">
+    The infrastructure exists.<br>The players are already there.<br><em>We just need to fix the process.</em>
+  </h2>
+  <p style="color:var(--muted);font-size:1rem;max-width:520px;margin:2rem auto 3rem;line-height:1.8">
+    Let's fix this together — and turn missed revenue into a competitive advantage. Full KPI Dashboard, automated triggers, and World Cup readiness by June.
+  </p>
+  <a href="#framework" class="btn-primary">Review the Full Strategy</a>
+</section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">BOOMERANG VIP</div>
-  <div class="footer-text">CONFIDENTIAL · EXTERNAL GROWTH CONSULTANTS · MARCH 2026</div>
+  <div>
+    <div class="footer-brand">Boomerang<span>Bet</span></div>
+    <p style="font-size:0.82rem;color:var(--muted);margin-top:0.5rem">External Growth Consultants · VIP Strategy Pitch</p>
+  </div>
+  <div class="footer-meta">
+    CONFIDENTIAL — EXTERNAL CONSULTING PITCH<br>
+    BOOMERANG BET · MARCH 2026<br>
+    ALL RIGHTS RESERVED
+  </div>
 </footer>
 
-<script>
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-  reveals.forEach(el => observer.observe(el));
-
-  // Stagger children within reveal containers
-  document.querySelectorAll('.pillar-cards, .formula-visual, .circle-funnel, .roadmap-grid, .trigger-grid, .compare-grid').forEach(container => {
-    const children = container.children;
-    Array.from(children).forEach((child, i) => {
-      child.style.transitionDelay = `${i * 80}ms`;
-      child.classList.add('reveal');
-      observer.observe(child);
-    });
-    container.classList.remove('reveal');
-  });
-</script>
 </body>
 </html>
